@@ -9,6 +9,6 @@ package edu.umsl;
  *
  * @author 16366
  */
-public class CommissionEmployee {
+public class CommissionEmployee extends Employee{
     
 }
