@@ -115,7 +115,7 @@ This in turn would inform users and prevent them from populating employees if th
      */
     public void loadEmployeeData() {
         System.out.println("loadEmployeeData works");
-        
+
 //        try {
 //            FileInputStream fis = new FileInputStream("SerEmployees.txt");
 //            ObjectInputStream ois = new ObjectInputStream(fis);
@@ -141,9 +141,9 @@ Prompt for Pay Rate
 Make sure to calculate for overtime at time and a half
      */
     public void populateEmployees() {
-        int id, hours;
+        int id, hours, items;
         String Fname, Lname;
-        float rate, taxrate;
+        float rate, taxrate, itemPrice;
 
         String id_holdinput;
 
@@ -151,7 +151,7 @@ Make sure to calculate for overtime at time and a half
 
         for (int i = 0; i < earray.length; i++) {
 
-            System.out.println("Please enter if you are a Hourly Employee or Salary Employee or Commission Employee [HE or SE or CE]");
+            System.out.println("Please enter if you are a Hourly Employee or Salary Employee or Commission Employee [HE or SE or CE], enter Q to quit!");
 
             String input = sc.next();
 
@@ -177,11 +177,27 @@ Make sure to calculate for overtime at time and a half
                 earray[i].setTaxrate(taxrate);
                 earray[i].setHours(hours);
             } else if (input.equalsIgnoreCase("SE")) {
-                earray[i] = new SalaryEmployee();
+                System.out.println("Please enter if you are a Staff or Executive. [{S or E]");
+                String inputSE = sc.next();
+                if (inputSE.equalsIgnoreCase("S")) {
+                    earray[i] = new StaffSalaryEmployee();
+                } else if (inputSE.equalsIgnoreCase("E")) {
+                    earray[i] = new ExecutivesSalaryEmployee();
+                }
 
             } else if (input.equalsIgnoreCase("CE")) {
                 earray[i] = new CommissionEmployee();
+                System.out.print("Enter number of items sold: ");
+                items = sc.nextInt();
+                System.out.print("Enter the price of item: ");
+                itemPrice = sc.nextFloat();
+                earray[i].setItems(items);
+                earray[i].getItemPrice(itemPrice);
+                
 
+            } else if (input.equalsIgnoreCase("Q")) {
+                System.out.println("You quit the input.");
+                break;
             } else {
                 System.out.println("Invalid input, please try again... ");
             }
@@ -325,7 +341,7 @@ Additionally you will save a file/report of each employee as a text file
     }
 
     public void showAll() {
-         System.out.println(" showAllEmployee works");
+        System.out.println(" showAllEmployee works");
 //        if (earray[0].getID() == 0) {
 //            System.out.println("You don't have any employees' data");
 //        } else {

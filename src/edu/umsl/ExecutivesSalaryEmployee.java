@@ -9,9 +9,11 @@ package edu.umsl;
  *
  * @author 16366
  */
-public abstract class SalaryEmployee extends Employee {
+public class ExecutivesSalaryEmployee extends SalaryEmployee{
 
     @Override
-    public abstract float computeGross();
-
+    public float computeGross() {
+        return 100000; 
+    }
+    
 }

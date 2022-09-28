@@ -21,7 +21,7 @@ public class Employee {
     private float rate = 30.0f;
     private float taxrate = 0.2f;
     private int hours = 45;
-    private float gross = 0.0f;
+    protected float gross = 0.0f;
     private float tax = 0.0f;
     private float net = 0.0f;
     private float net_percent = 0.0f;
@@ -31,7 +31,21 @@ public class Employee {
      * ******************
      * Constructors ******************
      */
+    public Employee(int ID, String Fname, String Lname, float rate, float taxtrate, int hours) {
+        this.ID = ID;
+        this.Fname = Fname;
+        this.Lname = Lname;
+        this.rate = rate;
+        this.taxrate = taxrate;
+        this.hours = hours;
+    }
+
+    public Employee(int ID, String Fname, String Lname) {
+        this(ID, Fname, Lname, 30f, 0.2f, 40);
+    }
+
     public Employee() {
+        ID++;
     }
 
     /**
@@ -41,8 +55,14 @@ public class Employee {
     public void menu() {
     }
 
-    public void computeGross() {
-        gross = rate * hours;
+    public float computeGross() {
+        if (hours >= 0 && hours <= 40) {
+            this.gross = this.hours * this.rate;
+        }
+        if (hours > 40) {
+            this.gross = 40 * this.rate + (float) ((this.hours - 40) * this.rate * 1.5);
+        }
+        return gross;
     }
 
     protected void computeTax() {
