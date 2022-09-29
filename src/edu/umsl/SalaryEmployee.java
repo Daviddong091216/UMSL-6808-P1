@@ -38,10 +38,10 @@ public class SalaryEmployee extends Employee {
         }
     }
 
-    @Override
-    protected void displayEmployee() {
-        super.displayEmployee();
-        System.out.println("Salary category: " + salaryCategory);
-    }
+//    @Override
+//    protected void displayEmployee() {
+//        super.displayEmployee();
+//        System.out.println("Salary category: " + salaryCategory);
+//    }
 
 }
