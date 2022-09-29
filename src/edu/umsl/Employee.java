@@ -5,13 +5,14 @@
  */
 package edu.umsl;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author 16366
  */
-public class Employee {
+public class Employee implements Serializable{
 
     /**
      * *******************
@@ -63,7 +64,7 @@ public class Employee {
     }
 
     public void computeGross() {
-        gross = gross;//???
+        //gross = gross;//???
     }
 
     protected void computeTax() {

@@ -158,15 +158,15 @@ Make sure to calculate for overtime at time and a half
             if (input.equalsIgnoreCase("HE")) {
                 earray[i] = new HourlyEmployee();
                 earray[i].menu();
-                earray[i].displayEmployee();
+//                earray[i].displayEmployee();
             } else if (input.equalsIgnoreCase("SE")) {
                 earray[i] = new SalaryEmployee();
                 earray[i].menu();
-                earray[i].displayEmployee();
+//                earray[i].displayEmployee();
             } else if (input.equalsIgnoreCase("CE")) {
                 earray[i] = new CommissionEmployee();
                 earray[i].menu();
-                earray[i].displayEmployee();
+//                earray[i].displayEmployee();
             } else if (input.equalsIgnoreCase("Q")) {
                 System.out.println("You quit the input.");
                 break;
@@ -199,6 +199,7 @@ Go Back or Exit
         for (int i = 0; i < earray.length; i++) {
             if (earray[i].getID() == searchID) {
                 index = i;
+                System.out.println("You selected ID is: " + i);
                 break;
             }
         }
@@ -206,17 +207,16 @@ Go Back or Exit
         if (index == -1) {
             System.out.println("We didn't find your record, please contact system administrator");
         } else {
-            Scanner sc2 = new Scanner(System.in);
-            int selectedID = sc2.nextInt();
+            System.out.println("We found your record. What do you want to look up:");
+            int selectedID;
             do {
-                System.out.println("We found your record. What do you want to look up:");
                 System.out.println("1) Caculate Gross pay");
                 System.out.println("2) Caculate Tax");
                 System.out.println("3) Caculate Net Pay");
                 System.out.println("4) Caculate Net Percent");
                 System.out.println("5) Display Employee ");
-                System.out.println("6) exit");
-
+                System.out.println("6) exit and return to the main menu");
+                selectedID = sc.nextInt();
                 if (selectedID == 1) {
                     earray[index].computeGross();
                     System.out.println("Employee gross: " + earray[index].gross);

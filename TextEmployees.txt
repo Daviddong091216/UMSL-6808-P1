@@ -1,1 +1,1 @@
-1|David|Dong|0.2|2|Aaron|Dong|0.3|3|Miley|Dong|0.35|
+1|David|Dong|0.2|2|Aaron|Dong|0.25|3|Miley|Dong|0.35|
