@@ -50,9 +50,7 @@ public class HourlyEmployee extends Employee {
         super.displayEmployee();
         System.out.println("Hours: " + hours);
         System.out.println("Rate: " + rate);
-        System.out.println("Gross: " + gross);
-        System.out.println("Net: " + net);
-        System.out.println("Net%: " + net_percent + "%");
+        
     }
 
     public float getRate() {

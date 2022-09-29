@@ -159,36 +159,18 @@ Make sure to calculate for overtime at time and a half
                 earray[i] = new HourlyEmployee();
                 earray[i].menu();
 //               earray[i].computeGross();
-               
-               earray[i].displayEmployee();
-               
-                
-                
-                
-//
-//                earray[i].setID(id);
-//                earray[i].setFname(Fname);
-//                earray[i].setLname(Lname);
-//                earray[i].setRate(rate);
-//                earray[i].setTaxrate(taxrate);
-//                earray[i].setHours(hours);
+
+                earray[i].displayEmployee();
+
             } else if (input.equalsIgnoreCase("SE")) {
-//                System.out.println("Please enter if you are a Staff or Executive. [{S or E]");
-//                String inputSE = sc.next();
-//                if (inputSE.equalsIgnoreCase("S")) {
-//                    earray[i] = new StaffSalaryEmployee();
-//                } else if (inputSE.equalsIgnoreCase("E")) {
-//                    earray[i] = new ExecutivesSalaryEmployee();
-//                }
+                earray[i] = new SalaryEmployee();
+                earray[i].menu();
+                earray[i].displayEmployee();
 
             } else if (input.equalsIgnoreCase("CE")) {
-//                earray[i] = new CommissionEmployee();
-//                System.out.print("Enter number of items sold: ");
-//                items = sc.nextInt();
-//                System.out.print("Enter the price of item: ");
-//                itemPrice = sc.nextFloat();
-//                earray[i].setItems(items);
-//                earray[i].getItemPrice(itemPrice);
+                earray[i] = new CommissionEmployee();
+                earray[i].menu();
+                earray[i].displayEmployee();
 
             } else if (input.equalsIgnoreCase("Q")) {
                 System.out.println("You quit the input.");
