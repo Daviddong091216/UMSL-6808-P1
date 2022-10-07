@@ -40,13 +40,13 @@ public class CommissionEmployee extends Employee {
         gross = items * itemPrice / 2;
     }
 
-//    @Override
-//    protected void displayEmployee() {
-//        super.displayEmployee();
-//        System.out.println("Items: " + items);
-//        System.out.println("Item price: " + itemPrice);
-//        
-//    }
+    @Override
+    protected void displayEmployee() {
+        super.displayEmployee();
+        System.out.println("Items: " + items);
+        System.out.println("Item price: " + itemPrice);
+        
+    }
     
     
     public int getItems() {

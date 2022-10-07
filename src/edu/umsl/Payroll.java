@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -21,6 +22,7 @@ import java.util.Scanner;
  */
 public class Payroll {
 
+//    ArrayList<Employee> earray = new ArrayList<>();
     Employee[] earray = new Employee[3];
 
     public static void main(String[] args) {
@@ -221,12 +223,18 @@ Go Back or Exit
                     earray[index].computeGross();
                     System.out.println("Employee gross: " + earray[index].gross);
                 } else if (selectedID == 2) {
+                    earray[index].computeGross();
                     earray[index].computeTax();
                     System.out.println("Employee tax: " + earray[index].tax);
                 } else if (selectedID == 3) {
+                    earray[index].computeGross();
+                    earray[index].computeTax();
                     earray[index].computeNet();
                     System.out.println("Employee net: " + earray[index].net);
                 } else if (selectedID == 4) {
+                    earray[index].computeGross();
+                    earray[index].computeTax();
+                    earray[index].computeNet();
                     earray[index].computeNetperc();
                     System.out.println("Employee net percent: " + earray[index].net_percent);
                 } else if (selectedID == 5) {
@@ -315,7 +323,8 @@ Additionally you will save a file/report of each employee as a text file
 
     public void showAll() {
         System.out.println(" showAllEmployee works");
-        if (earray[0].getID() == 0) {
+//        if (earray[0].getID() == 0) {
+        if (earray == null) {
             System.out.println("You don't have any employees' data");
         } else {
             for (int i = 0; i < earray.length; i++) {
@@ -342,37 +351,110 @@ Additionally you will save a file/report of each employee as a text file
         if (index == -1) {
             System.out.println("We didn't find your record, please contact system administrator");
         } else {
-            System.out.println("Please enter which do you want to edit[ID,Fname,Lname,rate,taxrate,hours]: ");
-            String editItem = sc.next();
-            if (editItem.equalsIgnoreCase("ID")) {
-                System.out.println("Employee old ID: " + earray[index].getID());
-                System.out.println("Please enter employee new ID: ");
-                earray[index].setID(sc.nextInt());
-            } else if (editItem.equalsIgnoreCase("Fname")) {
-                System.out.println("Employee old First Name: " + earray[index].getFname());
-                System.out.println("Please enter employee new First Name: ");
-                earray[index].setFname(sc.next());
-            } else if (editItem.equalsIgnoreCase("Lname")) {
-                System.out.println("Employee old Last Name: " + earray[index].getFname());
-                System.out.println("Please enter employee new Last Name: ");
-                earray[index].setLname(sc.next());
-            } else if (editItem.equalsIgnoreCase("taxrate")) {
-                System.out.println("Employee old tax rate: " + earray[index].getTaxrate());
-                System.out.println("Please enter employee new tax rate: ");
-                earray[index].setTaxrate(sc.nextFloat());
-            } /* else if (editItem.equalsIgnoreCase("rate")) {
-                System.out.println("Employee old rate: " + earray[index].getRate());
-                System.out.println("Please enter employee new rate: ");
-                earray[index].setRate(sc.nextFloat());
-            } else if (editItem.equalsIgnoreCase("hours")) {
-                System.out.println("Employee old hours: " + earray[index].getHours());
-                System.out.println("Please enter employee new hours: ");
-                earray[index].setHours(sc.nextInt());
-            } */ else {
-                System.out.println("Sorry you put the wrong item to edit. ");
+            if (earray[index] instanceof HourlyEmployee) {
+                HourlyEmployee hm = (HourlyEmployee) earray[index];
+                System.out.println("The employee is an hourly employee. ");
+                System.out.println("Please enter which do you want to edit[ID,Fname,Lname,rate,taxrate,hours]: ");
+                String editItem = sc.next();
+                if (editItem.equalsIgnoreCase("ID")) {
+                    System.out.println("Employee old ID: " + earray[index].getID());
+                    System.out.println("Please enter employee new ID: ");
+                    earray[index].setID(sc.nextInt());
+                } else if (editItem.equalsIgnoreCase("Fname")) {
+                    System.out.println("Employee old First Name: " + earray[index].getFname());
+                    System.out.println("Please enter employee new First Name: ");
+                    earray[index].setFname(sc.next());
+                } else if (editItem.equalsIgnoreCase("Lname")) {
+                    System.out.println("Employee old Last Name: " + earray[index].getFname());
+                    System.out.println("Please enter employee new Last Name: ");
+                    earray[index].setLname(sc.next());
+                } else if (editItem.equalsIgnoreCase("taxrate")) {
+                    System.out.println("Employee old tax rate: " + earray[index].getTaxrate());
+                    System.out.println("Please enter employee new tax rate: ");
+                    earray[index].setTaxrate(sc.nextFloat());
+                } else if (editItem.equalsIgnoreCase("rate")) {
+//                System.out.println("Employee old rate: " + earray[index].getRate());
+                    System.out.println("Employee old rate: " + hm.getRate());
+                    System.out.println("Please enter employee new rate: ");
+//                earray[index].setRate(sc.nextFloat());
+                    hm.setRate(sc.nextFloat());
+
+                } else if (editItem.equalsIgnoreCase("hours")) {
+//                System.out.println("Employee old hours: " + earray[index].getHours());
+                    System.out.println("Employee old hours: " + hm.getHours());
+                    System.out.println("Please enter employee new hours: ");
+//                earray[index].setHours(sc.nextInt());
+                    hm.setHours(sc.nextInt());
+                } else {
+                    System.out.println("Sorry you put the wrong item to edit. ");
+                }
+                System.out.println("The Employee data is: ");
+                earray[index].displayEmployee();
+            } else if (earray[index] instanceof SalaryEmployee) {
+                SalaryEmployee sm = (SalaryEmployee) earray[index];
+                System.out.println("The employee is a salary employee. ");
+                System.out.println("Please enter which do you want to edit[ID,Fname,Lname,Taxrate, Salary Category{SC}]: ");
+                String editItem = sc.next();
+                if (editItem.equalsIgnoreCase("ID")) {
+                    System.out.println("Employee old ID: " + earray[index].getID());
+                    System.out.println("Please enter employee new ID: ");
+                    earray[index].setID(sc.nextInt());
+                } else if (editItem.equalsIgnoreCase("Fname")) {
+                    System.out.println("Employee old First Name: " + earray[index].getFname());
+                    System.out.println("Please enter employee new First Name: ");
+                    earray[index].setFname(sc.next());
+                } else if (editItem.equalsIgnoreCase("Lname")) {
+                    System.out.println("Employee old Last Name: " + earray[index].getFname());
+                    System.out.println("Please enter employee new Last Name: ");
+                    earray[index].setLname(sc.next());
+                } else if (editItem.equalsIgnoreCase("taxrate")) {
+                    System.out.println("Employee old tax rate: " + earray[index].getTaxrate());
+                    System.out.println("Please enter employee new tax rate: ");
+                    earray[index].setTaxrate(sc.nextFloat());
+                } else if (editItem.equalsIgnoreCase("sc")) {
+                    System.out.println("Employee old Salary Category: " + sm.getSalaryCategory());
+                    System.out.println("Please enter employee new Salary Category[se or ee]: ");
+                    sm.setSalaryCategory(sc.next());
+                } else {
+                    System.out.println("Sorry you put the wrong item to edit. ");
+                }
+                System.out.println("The Employee data is: ");
+                earray[index].displayEmployee();
+            } else {
+                CommissionEmployee cm = (CommissionEmployee) earray[index];
+                System.out.println("The employee is a Commission employee. ");
+                System.out.println("Please enter which do you want to edit[ID,Fname,Lname,Taxrate, Items, Item Price[IP]]: ");
+                String editItem = sc.next();
+                if (editItem.equalsIgnoreCase("ID")) {
+                    System.out.println("Employee old ID: " + earray[index].getID());
+                    System.out.println("Please enter employee new ID: ");
+                    earray[index].setID(sc.nextInt());
+                } else if (editItem.equalsIgnoreCase("Fname")) {
+                    System.out.println("Employee old First Name: " + earray[index].getFname());
+                    System.out.println("Please enter employee new First Name: ");
+                    earray[index].setFname(sc.next());
+                } else if (editItem.equalsIgnoreCase("Lname")) {
+                    System.out.println("Employee old Last Name: " + earray[index].getFname());
+                    System.out.println("Please enter employee new Last Name: ");
+                    earray[index].setLname(sc.next());
+                } else if (editItem.equalsIgnoreCase("taxrate")) {
+                    System.out.println("Employee old tax rate: " + earray[index].getTaxrate());
+                    System.out.println("Please enter employee new tax rate: ");
+                    earray[index].setTaxrate(sc.nextFloat());
+                } else if (editItem.equalsIgnoreCase("items")) {
+                    System.out.println("Employee old Salary Category: " + cm.getItems());
+                    System.out.println("Please enter employee new Salary Category: ");
+                    cm.setItems(sc.nextInt());
+                } else if (editItem.equalsIgnoreCase("IP")) {
+                    System.out.println("Employee old Salary Category: " + cm.getItemPrice());
+                    System.out.println("Please enter employee new Salary Category: ");
+                    cm.setItemPrice(sc.nextFloat());
+                } else {
+                    System.out.println("Sorry you put the wrong item to edit. ");
+                }
+                System.out.println("The Employee data is: ");
+                earray[index].displayEmployee();
             }
-            System.out.println("The Employee data is: ");
-            earray[index].displayEmployee();
         }
     }
 

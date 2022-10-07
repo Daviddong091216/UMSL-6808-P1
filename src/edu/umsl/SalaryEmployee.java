@@ -23,25 +23,35 @@ public class SalaryEmployee extends Employee {
     public void menu() {
         super.menu();
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter salary category, Staff or Exective[S or E]: ");
+        System.out.print("Enter salary category, Staff or Exective[SE or EE]: ");
         salaryCategory = sc.next();
 
     }
 
     @Override
     public void computeGross() {
-        if (salaryCategory.equalsIgnoreCase("S")) {
+        if (salaryCategory.equalsIgnoreCase("SE")) {
             this.gross = 50000;
         }
-        if (salaryCategory.equalsIgnoreCase("E")) {
+        if (salaryCategory.equalsIgnoreCase("EE")) {
             this.gross = 100000;
         }
     }
+    
+    
 
-//    @Override
-//    protected void displayEmployee() {
-//        super.displayEmployee();
-//        System.out.println("Salary category: " + salaryCategory);
-//    }
+    @Override
+    protected void displayEmployee() {
+        super.displayEmployee();
+        System.out.println("Salary category: " + salaryCategory);
+    }
+
+    public String getSalaryCategory() {
+        return salaryCategory;
+    }
+
+    public void setSalaryCategory(String salaryCategory) {
+        this.salaryCategory = salaryCategory;
+    }
 
 }

@@ -83,7 +83,7 @@ public class Employee implements Serializable{
         System.out.println("ID: " + ID);
         System.out.println("First Name: " + Fname);
         System.out.println("Last Name: " + Lname);
-        System.out.println("Tax rate: " + net);
+        System.out.println("Tax rate: " + taxrate);
 //        System.out.println("Gross: " + gross);
 //        System.out.println("Net: " + net);
 //        System.out.println("Net%: " + net_percent + "%");

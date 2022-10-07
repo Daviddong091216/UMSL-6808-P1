@@ -45,13 +45,13 @@ public class HourlyEmployee extends Employee {
         }
     }
 
-//    @Override
-//    protected void displayEmployee() {
-//        super.displayEmployee();
-//        System.out.println("Hours: " + hours);
-//        System.out.println("Rate: " + rate);
-//        
-//    }
+    @Override
+    protected void displayEmployee() {
+        super.displayEmployee();
+        System.out.println("Hours: " + hours);
+        System.out.println("Rate: " + rate);
+        
+    }
 
     public float getRate() {
         return rate;
